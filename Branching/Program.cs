@@ -29,8 +29,6 @@
             Queue<Node> q = new Queue<Node>();
             q.Enqueue(temp);
 
-            // Do level order traversal until we find
-            // an empty place.
             while (q.Count != 0)
             {
                 temp = q.Peek();
@@ -74,14 +72,31 @@
             Console.WriteLine(root.left.key);
 
             root.left.left = new Node(3);
+            Console.WriteLine(root.left.left.key);
+
             root.right = new Node(4);
+            Console.WriteLine(root.right.key);
+
             root.right.left = new Node(5);
+            Console.WriteLine(root.right.left.key);
+
             root.right.left.left = new Node(6);
+            Console.WriteLine(root.right.left.left.key);
+
             root.right.right = new Node(7);
+            Console.WriteLine(root.right.right.key);
+
             root.right.middle = new Node(8);
+            Console.WriteLine(root.right.middle.key);
+
             root.right.middle.left = new Node(9);
+            Console.WriteLine(root.right.middle.left.key);
+
             root.right.middle.right = new Node(10);
+            Console.WriteLine(root.right.middle.right.key);
+
             root.right.middle.right.middle = new Node(11);
+            Console.WriteLine(root.right.middle.right.middle.key);
 
         }
     }
