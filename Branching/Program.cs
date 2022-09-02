@@ -1,102 +1,78 @@
 ﻿namespace Branching
 {
-    internal class Program
+    internal  class Program
     {
-        public class Node
+        public class Branch
         {
-            public int key;
-            public Node left, right, middle;
-            public Node root;
-
-            public Node(int key)
-            {
-                this.key = key;
-                left = null;
-                right = null;
-                middle = null;
-
-            }
+            public int data;
+            public List<Branch> Branches = new List<Branch>();
         }
-        static Node root;
-        
-        static void insert(Node temp, int key)
+
+        public static Branch NewBranchNode(int data)
         {
-            if (temp == null)
+            Branch tempBranch = new Branch();
+            tempBranch.data = data;
+            return tempBranch;
+        }
+
+        static void LevelOrderTraversal(Branch rootBranch)
+        {
+            if (rootBranch == null)
             {
-                root = new Node(key);
                 return;
             }
-            Queue<Node> q = new Queue<Node>();
-            q.Enqueue(temp);
 
-            while (q.Count != 0)
+            Queue<Branch> qBranches = new Queue<Branch>();
+
+            qBranches.Enqueue(rootBranch);
+
+            while (qBranches.Count != 0)
             {
-                temp = q.Peek();
-                q.Dequeue();
+                int n = qBranches.Count;
 
-                if (temp.left == null)
+                while (n > 0)
                 {
-                    temp.left = new Node(key);
-                    break;
-                }
-                else
-                    q.Enqueue(temp.left);
+                    Branch peekBranch = qBranches.Peek();
+                    qBranches.Dequeue();
 
-                if (temp.right == null)
-                {
-                    temp.right = new Node(key);
-                    break;
-                }
-                else
-                    q.Enqueue(temp.right);
+                    Console.Write(peekBranch.data + " ");
 
-                if (temp.middle == null)
-                {
-                    temp.middle = new Node(key);
-                    break;
+                    foreach (var branchElement in peekBranch.Branches)
+                    {
+                        qBranches.Enqueue(branchElement);
+                    }
+
+                    n--;
                 }
-                else
-                {
-                    q.Enqueue(temp.middle);
-                }
+
+                Console.WriteLine();
             }
         }
 
         public static void Main(String[] args)
         {
             
-            root = new Node(1);
-            Console.WriteLine(root.key);
+           Branch rootBranch = NewBranchNode(1);
 
-            root.left = new Node(2);
-            Console.WriteLine(root.left.key);
+           (rootBranch.Branches).Add(NewBranchNode(2));
 
-            root.left.left = new Node(3);
-            Console.WriteLine(root.left.left.key);
+           (rootBranch.Branches).Add(NewBranchNode(3));
 
-            root.right = new Node(4);
-            Console.WriteLine(root.right.key);
+           (rootBranch.Branches[0].Branches).Add(NewBranchNode(4));
 
-            root.right.left = new Node(5);
-            Console.WriteLine(root.right.left.key);
+           (rootBranch.Branches[1].Branches).Add(NewBranchNode(5));
+           (rootBranch.Branches[1].Branches).Add(NewBranchNode(6));
+           (rootBranch.Branches[1].Branches).Add(NewBranchNode(7));
 
-            root.right.left.left = new Node(6);
-            Console.WriteLine(root.right.left.left.key);
+           (rootBranch.Branches[1].Branches[0].Branches).Add(NewBranchNode(8));
+           (rootBranch.Branches[1].Branches[1].Branches).Add(NewBranchNode(9));
+           (rootBranch.Branches[1].Branches[1].Branches[0].Branches).Add(NewBranchNode(11));
+           (rootBranch.Branches[1].Branches[2].Branches).Add(NewBranchNode(10));
+           
 
-            root.right.right = new Node(7);
-            Console.WriteLine(root.right.right.key);
+           Console.WriteLine("Level order traversal");
 
-            root.right.middle = new Node(8);
-            Console.WriteLine(root.right.middle.key);
-
-            root.right.middle.left = new Node(9);
-            Console.WriteLine(root.right.middle.left.key);
-
-            root.right.middle.right = new Node(10);
-            Console.WriteLine(root.right.middle.right.key);
-
-            root.right.middle.right.middle = new Node(11);
-            Console.WriteLine(root.right.middle.right.middle.key);
+           LevelOrderTraversal(rootBranch);
 
         }
     }
