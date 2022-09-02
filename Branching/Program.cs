@@ -61,12 +61,17 @@
            (rootBranch.Branches[0].Branches).Add(NewBranchNode(4));
 
            (rootBranch.Branches[1].Branches).Add(NewBranchNode(5));
+
            (rootBranch.Branches[1].Branches).Add(NewBranchNode(6));
+
            (rootBranch.Branches[1].Branches).Add(NewBranchNode(7));
 
            (rootBranch.Branches[1].Branches[0].Branches).Add(NewBranchNode(8));
+
            (rootBranch.Branches[1].Branches[1].Branches).Add(NewBranchNode(9));
+
            (rootBranch.Branches[1].Branches[1].Branches[0].Branches).Add(NewBranchNode(11));
+
            (rootBranch.Branches[1].Branches[2].Branches).Add(NewBranchNode(10));
            
 
