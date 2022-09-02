@@ -17,6 +17,8 @@
 
         static void LevelOrderTraversal(Branch rootBranch)
         {
+            int depthOfTree = 0;
+
             if (rootBranch == null)
             {
                 return;
@@ -45,8 +47,13 @@
                     n--;
                 }
 
+                depthOfTree++;
+
                 Console.WriteLine();
+                
             }
+
+            Console.WriteLine($"Depth of the tree is {depthOfTree}");
         }
 
         public static void Main(String[] args)
